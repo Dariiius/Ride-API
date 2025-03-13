@@ -18,7 +18,7 @@ Ensure you have the following installed:
 ## Setup Instructions
 #### 1. Clone the repository:
 ```bash
-git clone --
+git clone https://github.com/Dariiius/Ride-API.git
 ```
 
 #### 2. Create and activate the virtual environment:
