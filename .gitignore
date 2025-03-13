@@ -1,0 +1,32 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env/
+*.venv
+
+# Django-related files
+*.log
+db.sqlite3
+media/
+staticfiles/
+
+# Migrations
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# Pytest / Test cache
+.cache/
+.pytest_cache/
+nosetests.xml
+coverage/
+
+# Coverage reports
+htmlcov/
+.coverage
+coverage.xml
+*.cover
+.hypothesis/
