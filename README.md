@@ -5,6 +5,7 @@ Ride-API is a RESTful API built using Django REST Framework (DRF) for managing r
 ### Technologies Used
 - Django REST Framework (3.15.2)
 - SQLite
+- JWT Authentication (Simple JWT)
 
 
 ### Installation
@@ -13,7 +14,7 @@ Ride-API is a RESTful API built using Django REST Framework (DRF) for managing r
 
 Ensure you have the following installed:
 - Python 3.13.2
-- Virtual environment (venv)
+- Virtual environment (refer to Setup #2 in the Setup Instructions below)
 
 ## Setup Instructions
 #### 1. Clone the repository:
