@@ -9,17 +9,18 @@ from drf_spectacular.utils import extend_schema_view, extend_schema
 
 
 token_obtain_schema_view = extend_schema_view(
-    post=extend_schema(tags=["Authentication"])
+    post=extend_schema(tags=['Authentication'])
 )(TokenObtainPairView.as_view())
 
 token_refresh_schema_view = extend_schema_view(
-    post=extend_schema(tags=["Authentication"])
+    post=extend_schema(tags=['Authentication'])
 )(TokenRefreshView.as_view())
 
 urlpatterns = [
     # Main urls
     path('admin/', admin.site.urls),
     path('api/user/', include('app_user.urls')),
+    path('api/ride/', include('app_ride.urls')),
          
     # Documentation
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),

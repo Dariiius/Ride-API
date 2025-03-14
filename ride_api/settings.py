@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     
     # APPS 
     'app_user',
+    'app_ride',
     
     # PACKAGES
     'drf_spectacular',
@@ -114,7 +115,7 @@ AUTH_USER_MODEL = 'app_user.User'
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Singapore'
 
 USE_I18N = True
 
@@ -149,10 +150,15 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'Django Backend Developer Assessment',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
+    'TAGS': [
+        {'name': 'Authentication', 'description': 'Token-based authentication endpoints'},
+        {'name': 'Users', 'description': 'User management endpoints'},
+        {'name': 'Rides', 'description': 'Ride management endpoints'},
+    ],
 }
 
 # JWT config
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
 }
