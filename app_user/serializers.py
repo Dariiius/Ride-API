@@ -40,22 +40,15 @@ class UserSerializer(serializers.ModelSerializer):
         """
         Update user and return data
         """
-        password = validated_data.pop('password', None)
+        if (password := validated_data.pop('password', None)):
+            instance.set_password(password)
         validated_data.pop('password2', None)
-        
-        email = validated_data.pop('email', None)
-        if email:
-            instance.email = email
-            instance.username = email
-        
+            
+        if (email := validated_data.pop('email', None)):
+            instance.email = instance.username = email
+            
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
-            
-            if attr == 'email':
-                setattr(instance, 'username', value)
-            
-        if password:
-            instance.set_password(password)
-            
+        
         instance.save()
         return instance
