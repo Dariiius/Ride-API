@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # APPS 
     'app_user',
     'app_ride',
+    'app_ride_event',
     
     # PACKAGES
     'drf_spectacular',
@@ -154,6 +155,7 @@ SPECTACULAR_SETTINGS = {
         {'name': 'Authentication', 'description': 'Token-based authentication endpoints'},
         {'name': 'Users', 'description': 'User management endpoints'},
         {'name': 'Rides', 'description': 'Ride management endpoints'},
+        {'name': 'Ride Events', 'description': 'Ride Events management endpoints'},
     ],
 }
 
