@@ -1,12 +1,18 @@
 """
 Ride app Serializers
 """
+from app_ride_event.serializers import RideEventSerializer
+from app_user.serializers import UserSerializer
 from .models import Ride
 from rest_framework import serializers
 from django.utils.timezone import now
 
 
 class RideSerializer(serializers.ModelSerializer):
+    rider = UserSerializer(read_only=True)
+    driver = UserSerializer(read_only=True)
+    ride_events = RideEventSerializer(source='ride', many=True, read_only=True)
+    
     class Meta:
         model = Ride
         fields = '__all__'
