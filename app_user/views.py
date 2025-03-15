@@ -25,8 +25,8 @@ class UserView(viewsets.ModelViewSet):
         """
         Get list of users
         """
-        serializer = self.get_serializer(self.paginate_queryset(self.queryset), many=True)
-        return self.get_paginated_response(serializer.data)
+        serializer = self.get_serializer(self.queryset, many=True)
+        return self.get_paginated_response(self.paginate_queryset(serializer.data))
     
     def retrieve(self, request, pk=None):
         """

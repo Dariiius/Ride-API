@@ -4,11 +4,13 @@ User app Views
 from app_ride.models import Ride
 from app_ride.serializers import RideSerializer
 from app_user.permissions import IsAdminUser
+from .filters import RideFilter
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.generics import get_object_or_404
 from rest_framework import status
 from drf_spectacular.utils import extend_schema
+from django_filters import rest_framework as filters
 
 
 @extend_schema(tags=['Rides'])
@@ -20,12 +22,15 @@ class RideView(viewsets.ModelViewSet):
     serializer_class = RideSerializer
     permission_classes = [IsAdminUser]
     http_method_names = ['get', 'post', 'patch', 'delete']
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_class = RideFilter
     
     def list(self, request, *args, **kwargs):
         """
         Get list of rides
         """
-        serializer = self.get_serializer(self.queryset, many=True)
+        queryset = self.filter_queryset(self.queryset)
+        serializer = self.get_serializer(queryset, many=True)
         return self.get_paginated_response(self.paginate_queryset(serializer.data))
     
     def retrieve(self, request, pk=None):
