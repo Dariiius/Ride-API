@@ -13,6 +13,20 @@ class RideSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ride
         fields = '__all__'
+        
+    def validate(self, data):
+        """
+        Extra validation
+        """
+        # Checks if the roles of driver_id and rider_id matches in the user roles
+        driver = data.get('driver')
+        rider = data.get('rider')
+        if driver is not None and getattr(driver, 'role', None) != 'driver':
+            raise serializers.ValidationError({'message': 'Selected driver does not have the role \'driver\'.'})
+        
+        if rider is not None and getattr(rider, 'role', None) != 'rider':
+            raise serializers.ValidationError({'message': 'Selected rider does not have the role \'rider\'.'})
+        return data
 
     def create(self, validated_data):
         """
