@@ -9,10 +9,6 @@ from django.utils.timezone import now
 
 
 class RideSerializer(serializers.ModelSerializer):
-    rider = UserSerializer(read_only=True)
-    driver = UserSerializer(read_only=True)
-    ride_events = RideEventSerializer(source='ride', many=True, read_only=True)
-    
     class Meta:
         model = Ride
         fields = '__all__'
@@ -35,3 +31,14 @@ class RideSerializer(serializers.ModelSerializer):
             
         instance.save(update_fields=validated_data.keys())
         return instance
+    
+
+class RideListSerializer(serializers.ModelSerializer):
+    rider = UserSerializer(read_only=True)
+    driver = UserSerializer(read_only=True)
+    ride_events = RideEventSerializer(source='ride', many=True, read_only=True)
+    distance = serializers.FloatField(read_only=True)
+    
+    class Meta:
+        model = Ride
+        fields = '__all__'

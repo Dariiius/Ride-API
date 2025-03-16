@@ -2,7 +2,7 @@
 User app Views
 """
 from app_ride.models import Ride
-from app_ride.serializers import RideSerializer
+from app_ride.serializers import RideSerializer, RideListSerializer
 from app_user.permissions import IsAdminUser
 from .filters import RideFilter
 from rest_framework import viewsets
@@ -24,6 +24,14 @@ class RideView(viewsets.ModelViewSet):
     http_method_names = ['get', 'post', 'patch', 'delete']
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = RideFilter
+    
+    def get_serializer_class(self):
+        """
+        User RideListSerializer for list and retrieve actions
+        """
+        if self.action in ['list', 'retrieve']:
+            return RideListSerializer
+        return super().get_serializer_class()
     
     def list(self, request, *args, **kwargs):
         """
