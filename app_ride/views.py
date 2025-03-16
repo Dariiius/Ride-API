@@ -18,7 +18,7 @@ class RideView(viewsets.ModelViewSet):
     """
     Ride View
     """
-    queryset = Ride.objects.all()
+    queryset = Ride.objects.select_related('rider', 'driver')
     serializer_class = RideSerializer
     permission_classes = [IsAdminUser]
     http_method_names = ['get', 'post', 'patch', 'delete']

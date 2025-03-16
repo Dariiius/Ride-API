@@ -50,11 +50,14 @@ INSTALLED_APPS = [
     'app_ride_event',
     
     # PACKAGES
+    'rest_framework',
     'drf_spectacular',
     'django_filters',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -173,3 +176,13 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
 }
+
+# Django Debug Toolbar
+DEBUG_TOOLBAR_CONFIG = {
+    'UPDATE_ON_FETCH': True    
+}
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+    'localhost',
+]

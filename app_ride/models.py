@@ -20,4 +20,4 @@ class Ride(models.Model):
     pickup_longitude = models.FloatField()
     dropoff_latitude = models.FloatField()
     dropoff_longitude = models.FloatField()
-    pickup_time = models.DateTimeField(null=True, blank=True)
+    pickup_time = models.DateTimeField()

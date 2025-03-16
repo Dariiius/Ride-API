@@ -1,11 +1,12 @@
 """
 Ride app Serializers
 """
+from typing import List
 from app_ride_event.serializers import RideEventSerializer
 from app_user.serializers import UserSerializer
 from .models import Ride
 from rest_framework import serializers
-from django.utils.timezone import now
+from django.utils.timezone import now, timedelta
 
 
 class RideSerializer(serializers.ModelSerializer):
@@ -23,9 +24,6 @@ class RideSerializer(serializers.ModelSerializer):
         """
         Update ride and return data
         """
-        if 'status' in validated_data and validated_data['status'] == 'pickup':
-            validated_data['pickup_time'] = now()
-        
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
             
@@ -36,9 +34,13 @@ class RideSerializer(serializers.ModelSerializer):
 class RideListSerializer(serializers.ModelSerializer):
     rider = UserSerializer(read_only=True)
     driver = UserSerializer(read_only=True)
-    ride_events = RideEventSerializer(source='ride', many=True, read_only=True)
+    todays_ride_events = serializers.SerializerMethodField()
     distance = serializers.FloatField(read_only=True)
     
     class Meta:
         model = Ride
         fields = '__all__'
+        
+    def get_todays_ride_events(self, obj) -> List[str]:
+        recent_events = obj.ride_event.filter(created_at__gte=now() - timedelta(hours=24))
+        return RideEventSerializer(recent_events, many=True).data

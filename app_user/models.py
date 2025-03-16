@@ -13,3 +13,4 @@ class User(AbstractUser):
     )
     role = models.CharField(max_length=10, choices=ROLES, default=ROLES[0][0])
     phone_number = models.CharField(max_length=20, unique=True, null=True)
+    email = models.EmailField(unique=True)

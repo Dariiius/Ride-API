@@ -7,6 +7,8 @@ from drf_spectacular.views import SpectacularSwaggerView, SpectacularAPIView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from drf_spectacular.utils import extend_schema_view, extend_schema
 
+from ride_api import settings
+
 
 token_obtain_schema_view = extend_schema_view(
     post=extend_schema(tags=['Authentication'])
@@ -30,4 +32,8 @@ urlpatterns = [
     # Token
     path('api/token/', token_obtain_schema_view, name='token_obtain_pair'),
     path('api/token/refresh/', token_refresh_schema_view, name='token_refresh'),
-]
+] 
+
+if settings.DEBUG:
+    from debug_toolbar.toolbar import debug_toolbar_urls
+    urlpatterns += debug_toolbar_urls()
