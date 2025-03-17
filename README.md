@@ -109,11 +109,9 @@ python3 manage.py runserver 8080
 2. Writing a raw SQL query to count the number of trips that exceeded one hour per driver and sort the results by date.
 
 #### Ride list API screenshots (Django Debug Bar)
-*Note: Three queries were identified because the second and third queries are similar for each ride entry.*
+*Note: Three queries were identified because there are only two ride records in the database, and the second and third queries are similar for each ride entry.*
 
-![Swagger-UI Request](https://drive.google.com/file/d/1owhyS0lkGasUEGDR6ozbHRym2SALlror/view?usp=sharing)
-
-![Django Debug Bar](https://drive.google.com/file/d/1gZleE9gDJKIfbPAW9WCsb8Q2Tjzmxxn_/view?usp=sharing)
+[Screenshot #1](https://drive.google.com/file/d/1owhyS0lkGasUEGDR6ozbHRym2SALlror/view?usp=sharing) | [Screenshot #2](https://drive.google.com/file/d/1gZleE9gDJKIfbPAW9WCsb8Q2Tjzmxxn_/view?usp=sharing)
 
 
 #### Raw SQL statement to retrieve the count of trips lasting more than one hour from pickup to drop-off:
